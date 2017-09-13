@@ -1,3 +1,4 @@
+
 import java.util.Date;
 
 /**
@@ -21,6 +22,7 @@ public class StudentGroup implements StudentArrayOperation {
 	 */
 	public StudentGroup(int length) {
 		this.students = new Student[length];
+		
 	}
 
 	@Override
@@ -60,16 +62,18 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public void addFirst(Student student) {
 		// Add your implementation here
-		if(students.length == 0)
-		  setStudent(student, 0) ;
+		if(students == null)
+		  this.setStudent(student, 0) ;
 		else{
-		  Student[] s1 = new Student[students.length + 1] ;
-		  StudentGroup st = new StudentGroup(students.length+1) ;
-		  st.setStudent(student, 0) ;
-		  for(int i = 0 ; i < students.length  ; i++){
-		    st.setStudent(students[i], i+1) ;
-		  }
-      
+		  int n = students.length ;
+		  
+		  Student s1[] = new Student[n+1] ;
+		  s1[0] = new Student(student.getId(), student.getFullName(), student.getBirthDate(), student.getAvgMark()) ;
+		  for(int i = 0 ; i < n ; i++)
+		    s1[i+1] = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark()) ;
+		  new StudentGroup(n+1) ;
+		  this.students = null ;
+		  this.setStudents(s1) ;
 		}
 		  
 	}
@@ -122,7 +126,13 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getByBirthDate(Date date) {
 		// Add your implementation here
-		return null;
+		Student[] st = new Student[students.length] ;
+		int j = 0 ;
+		for(int i = 0 ; i < students.length ; i++){
+		  if(students[i].getBirthDate().equals(date))
+		    st[++j] = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark());
+		}
+		return st;
 	}
 
 	@Override
@@ -138,26 +148,49 @@ public class StudentGroup implements StudentArrayOperation {
 	}
 
 	@Override
-	public int getCurrentAgeByDate(int indexOfStudent) {
+	public int getCurrentAgeByDate(int i) {
 		// Add your implementation here
+		Date date = students[i].getBirthDate() ;
+		date.getYear() ;
 		return 0;
 	}
 
 	@Override
 	public Student[] getStudentsByAge(int age) {
 		// Add your implementation here
-		return null;
+		Student[] st = new Student[students.length] ;
+		int j = 0 ;
+		for(int i = 0 ; i < students.length ; i++){
+		  if(this.getCurrentAgeByDate(i) == age)
+		    st[++j] = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark());
+		}
+		return st;
+		//return null;
 	}
 
 	@Override
 	public Student[] getStudentsWithMaxAvgMark() {
 		// Add your implementation here
-		return null;
+		Student[] st = new Student[students.length] ;
+		int j = 0 ;
+		double max = students[0].getAvgMark() ;
+		for(int i = 0 ; i < students.length ; i++){
+		  if(students[i].getAvgMark() >= max)
+		    st[++j] = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark());
+		}
+		return st;
+	//	return null;
 	}
 
 	@Override
 	public Student getNextStudent(Student student) {
 		// Add your implementation here
-		return null;
+		Student st=null ;
+		for(int i = 0 ; i < students.length ; i++){
+		  if(students[i].getId() == student.getId()+1)
+		    st = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark());
+		}
+		return st;
+//		return null;
 	}
 }
