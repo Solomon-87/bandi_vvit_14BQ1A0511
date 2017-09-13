@@ -89,7 +89,7 @@ public class StudentGroup implements StudentArrayOperation {
 		  Student s1[] = new Student[n+1] ;
 		  for(int i = 0 ; i < n ; i++)
 		    s1[i] = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark()) ;
-		  s1[i] = new Student(student.getId(), student.getFullName(), student.getBirthDate(), student.getAvgMark()) ;
+		  s1[n] = new Student(student.getId(), student.getFullName(), student.getBirthDate(), student.getAvgMark()) ;
 		  new StudentGroup(n+1) ;
 		  this.students = null ;
 		  this.setStudents(s1) ;
