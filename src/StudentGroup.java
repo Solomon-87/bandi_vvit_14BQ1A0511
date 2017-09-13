@@ -154,7 +154,7 @@ public class StudentGroup implements StudentArrayOperation {
 		Student[] st = new Student[students.length] ;
 		int j = 0 ;
 		for(int i = 0 ; i < students.length ; i++){
-		  if(students[i].getBirthDate().after(firstDate) && students[i].getBirthDate().before(lastDate))
+		  if((students[i].getBirthDate()).after(firstDate) && (students[i].getBirthDate()).before(lastDate))
 		    st[++j] = new Student(students[i].getId(), students[i].getFullName(), students[i].getBirthDate(), students[i].getAvgMark());
 		}
 		return st;
