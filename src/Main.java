@@ -37,7 +37,7 @@ public class Main {
     
     Student stud = new Student(2, "p k", date, 43.3) ;
     sg.addFirst(stud) ;
-    System.out.println(sg.getStudent(0).getFullName() );
+    //System.out.println(sg.getStudent(0).getFullName() );
   
     
     
